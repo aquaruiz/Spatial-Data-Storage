@@ -1,6 +1,5 @@
 package com.spatial.storage;
 
-import com.vividsolutions.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -22,9 +22,9 @@ public class SpatialServiceImpl implements SpatialUnitService {
     public boolean saveUnit(SpatialUnit spatialUnit, String username) {
         Optional<User> user = this.userRepository.findUserByUsername(username);
 
-        if (user.isEmpty()){
-            return false;
-        }
+//        if (user.isEmpty()){
+//            return false;
+//        }
 
         // TODO modelling to DB entity
 
@@ -36,9 +36,9 @@ public class SpatialServiceImpl implements SpatialUnitService {
     public SpatialUnit getByUnitId(String id) {
         Optional<SpatialUnit> unit = this.spatialUnitRepository.findById(id);
 
-        if (unit.isEmpty()) {
-            return null;
-        }
+//        if (unit.isEmpty()) {
+//            return null;
+//        }
 
         return unit.get();
     }
