@@ -28,7 +28,7 @@ public class SpatialServiceImpl implements SpatialUnitService {
 
         // TODO modelling to DB entity
 
-        spatialUnit.setUser(user.get());
+//        spatialUnit.setUser(user.get());
         return spatialUnitRepository.saveAndFlush(spatialUnit) != null;
     }
 

@@ -34,6 +34,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @OneToMany
     public Set<SpatialUnit> getSpatialUnits() {
         return Collections.unmodifiableSet(spatialUnits);
     }

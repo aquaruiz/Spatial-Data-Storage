@@ -11,10 +11,10 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/api/storage", produces = "application/json")
-public class SpatialUnitController {
+public class SpatialApiUnitController {
     private final SpatialUnitService spatialService;
 
-    public SpatialUnitController(SpatialUnitService spatialService) {
+    public SpatialApiUnitController(SpatialUnitService spatialService) {
         this.spatialService = spatialService;
     }
 

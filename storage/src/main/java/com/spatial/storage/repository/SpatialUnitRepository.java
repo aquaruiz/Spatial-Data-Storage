@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface SpatialUnitRepository extends JpaRepository<SpatialUnit, String> {
-    @Query("select s from spatialUnit m where within(m.geom, ?1) = true")
-    List<SpatialUnit> findWithin(Geometry filter);
+//    @Query("select s from spatialUnit m where within(m.geom, ?1) = true")
+//    List<SpatialUnit> findWithin(Geometry filter);
 }
