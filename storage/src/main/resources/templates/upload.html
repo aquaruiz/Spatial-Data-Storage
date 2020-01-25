@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body>
+    <h1>Upload here</h1>
+    <form action="/storage/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadfile" accept=".json,.geojson,.shp,.kml,.kmz" id="file_loader">
+        <div class="preview">
+            <p>No file currently selected for upload</p>
+        </div>
+<!--        TODO js-->
+        <input type="submit">
+    </form>
+</body>
+</html>
