@@ -10,8 +10,6 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
@@ -42,7 +40,9 @@ public class FileUtil {
         return file;
     }
 
-    public static void unzip(File zipFile) throws IOException {
+    public static File unzip(File zipFile) throws IOException {
+        File unzipPath = new File("java.io.tmpdir" + File.separator + zipFile.getName().split("\\.")[0]);
+        unzipPath.mkdir();
         FileInputStream fis = null;
         ZipInputStream zipIs = null;
         ZipEntry zEntry = null;
@@ -53,7 +53,7 @@ public class FileUtil {
                 try{
                     byte[] tmp = new byte[4*1024];
                     FileOutputStream fos = null;
-                    String opFilePath = "java.io.tmpdir" + File.separator +zEntry.getName();
+                    String opFilePath = unzipPath + File.separator +zEntry.getName();
                     System.out.println("Extracting file to "+opFilePath);
                     fos = new FileOutputStream(opFilePath);
                     int size = 0;
@@ -74,9 +74,28 @@ public class FileUtil {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return unzipPath;
     }
 
-    public static File getShapeFile(File zipFile) {
-        return null;
+    public static File findShapeFile(File unzipPath) throws IOException {
+        File shapefile = new File("");
+        // Find first .shp file in the unzip folder
+        File[] unzippedFiles = unzipPath.listFiles();
+        for (int i = 0; i < unzippedFiles.length; i++)
+        {
+            if (unzippedFiles[i].getName().endsWith(".shp"))
+            {
+                shapefile = new File(unzipPath + File.separator
+                        + unzippedFiles[i].getName());
+                break;
+            }
+        }
+        if (shapefile.toString() == "")
+        {
+            throw new IOException("No shapefile present in '" + unzipPath
+                    + "'.");
+        }
+        return shapefile;
     }
 }
