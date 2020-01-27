@@ -3,6 +3,7 @@ package com.spatial.storage.util;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.feature.FeatureCollection;
 import org.opengis.feature.simple.SimpleFeature;
@@ -17,7 +18,7 @@ import java.util.zip.ZipInputStream;
 
 public class FileUtil {
 
-    public static void readShapeFile (File file) throws IOException {
+    public static SimpleFeatureSource readShapeFile (File file) throws IOException {
 //        File file = JFileDataStoreChooser.showOpenFile("shp", null);
 //        File file = new File("java.io.tmpdir", "ABW_roads.shp");
 
@@ -30,7 +31,9 @@ public class FileUtil {
         FeatureSource<SimpleFeatureType, SimpleFeature> source = dataStore.getFeatureSource(typeName);
         FeatureCollection<SimpleFeatureType, SimpleFeature> collection = source.getFeatures();
 
+        System.out.println(typeName+" has "+source.getCount(Query.ALL)+" features");
         SimpleFeatureSource featureSource = dataStore.getFeatureSource(typeName);
+        return featureSource;
     }
 
     public static File transformToFile(MultipartFile multipartFile) throws IOException {
@@ -98,4 +101,6 @@ public class FileUtil {
         }
         return shapefile;
     }
+
+
 }
